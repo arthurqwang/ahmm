@@ -1,0 +1,14 @@
+行 169: 控件 CommonDialog1 的类 MSComDlg.CommonDialog 不是一个已加载的控件类。
+行 20:属性 Icon 在 RunOnWeb_Setup 中的文件引用无效。
+行 172: 属性名 _ExtentX 在 CommonDialog1 中是无效的。
+行 173: 属性名 _ExtentY 在 CommonDialog1 中是无效的。
+行 174: 属性名 _Version 在 CommonDialog1 中是无效的。
+行 179: 属性 Caption 在 LB3_1 中必须为引号括起来的串
+行 282: 属性 Caption 在 LB4_1 中必须为引号括起来的串
+行 350: 属性 Caption 在 LB2_1 中必须为引号括起来的串
+行 433: 属性 Caption 在 LINK_WEB 中必须为引号括起来的串
+行 446:属性 MouseIcon 在 LINK_WEB 中的文件引用无效。
+行 456:属性 Picture 在 IMG_BSV 中的文件引用无效。
+行 465: 属性 Caption 在 Label7 中必须为引号括起来的串
+行 597:属性 Picture 在 Image1 中的文件引用无效。
+行 646:属性 Picture 在 Image2 中的文件引用无效。
