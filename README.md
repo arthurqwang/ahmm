@@ -60,7 +60,7 @@ To further understand the "Arthur's Holographic Mind Map" and the usage of this 
 I hope to continue to receive everyone's support.
 
 ## Online Use / External Links
-You can use it online on the 'Big System View' website and get more examples: http://wwww.holomind.com.cn
+You can use it online on the 'Big System View' website and get more examples: http://www.holomind.com.cn
 
 
 
@@ -129,7 +129,7 @@ AHMM使用HTML和原生JavaScript编制，各主流浏览器均可使用，建�
 
 ## 在线使用 / 外部链接
 可在【大系统观】网站在线使用，并获得更多实例：
-http://wwww.holomind.com.cn
+http://www.holomind.com.cn
 
 
 
