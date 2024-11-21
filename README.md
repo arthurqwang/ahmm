@@ -18,6 +18,9 @@ Software ahmm.html can be used online or downloaded for offline use. It has some
 
 I hope to continue to receive everyone's support.
 
+## Online Use / External Links
+You can use it online on the 'Big System View' website and get more examples: http://wwww.holomind.com.cn
+
 
 
 <br><br>
@@ -42,6 +45,10 @@ AHMM 用于系统升维思考。世间每项事物都是一个系统，都有一
 
 希望继续得到大家支持。
 
+## 在线使用 / 外部链接
+可在【大系统观】网站在线使用，并获得更多实例：
+http://wwww.holomind.com.cn
+
 
 
 <center>
@@ -50,23 +57,3 @@ AHMM 用于系统升维思考。世间每项事物都是一个系统，都有一
 <img alt="BSV Logo"  src="files/img/BSV_star.jpg" width="600"><br>
 </center>
 
-
-
-
-
-
-
-
-
-
-
-
-阿色全息脑图 AHMM (Arthur's Holographic Mind Map)
-
-阿色全息脑图是按照大系统观原理开发的新型思维工具，用于升维思考。
-
-世间每项事物都是一个系统，都有一个核心 —— 吸引子@。全息脑图让您以系统的观点看待世界，专注系统的结构信息——全息，抓住事物的本质，透过表象和数据发现规律。
-
-阿色全息脑图制作软件 ahmm.html，可在线使用，也可下载后离线使用。它具有神奇的全息有机系统的特点：数据与执行码一体化，能自己给自己保存数据，并能够无限运行繁衍，即生成的脑图可以继续生成下一代脑图。
-
-AHMM 由原生 JavaScript 编写，不使用任何框架。
