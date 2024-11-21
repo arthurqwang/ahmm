@@ -49,11 +49,14 @@ AHMM 用于系统升维思考。世间每项事物都是一个系统，都有一
 可在【大系统观】网站在线使用，并获得更多实例：
 http://wwww.holomind.com.cn
 
+<br><br><br><br>
 
 
 <center>
-<img alt="BSV Logo"  src="files/img/BSV_Cover-500.jpg"><br>
-<img alt="BSV Logo"  src="files/img/BSV_back_cover-500.jpg"><br>
-<img alt="BSV Logo"  src="files/img/BSV_star.jpg" width="600"><br>
+<img alt="BSV Logo"  src="_/1.png"><br>
+<img alt="BSV Logo"  src="_/2.png"><br>
+<img alt="BSV Logo"  src="_/3.png"><br>
+<img alt="BSV Logo"  src="_/4.png"><br>
+<img alt="BSV Logo"  src="_/5.png"><br>
 </center>
 
