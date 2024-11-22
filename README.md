@@ -60,7 +60,7 @@ To further understand the "Arthur's Holographic Mind Map" and the usage of this 
 I hope to continue to receive everyone's support.
 
 ## Online Use / External Links
-You can use it online on the 'Big System View' website and get more examples: http://www.holomind.com.cn
+You can use it online on the 'Big Systems View' website and get more examples: http://www.holomind.com.cn
 
 
 
