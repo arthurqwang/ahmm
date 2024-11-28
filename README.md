@@ -1,3 +1,10 @@
+
+Try at / 使用：http://www.holomind.com.cn/ahmm/ahmm.html
+<center>
+<img alt="BSV Logo"  src="_/2.png"><br>
+<img alt="BSV Logo"  src="_/4.png"><br>
+</center>
+
 #### [中文🔃](#english)
 # AHMM (Arthur's Holographic Mind Map)
 ## Current State
@@ -146,7 +153,6 @@ http://www.holomind.com.cn
 
 <center>
 <img alt="BSV Logo"  src="_/1.png"><br>
-<img alt="BSV Logo"  src="_/2.png"><br>
 <img alt="BSV Logo"  src="_/3.png"><br>
 <img alt="BSV Logo"  src="_/4.png"><br>
 <img alt="BSV Logo"  src="_/5.png"><br>
