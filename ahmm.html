@@ -10,10 +10,10 @@
 
 <!--***************************************************************************************************************************************-->
 <!--************************************** 阿色全息脑图 (AHMM: Arthur's Holographic Mind Map) **********************************************-->
-<!--******************************************************* Ver H2024.9.19.12 *************************************************************-->
-<!--****************************************************** 更新日期：2024.11.15 ************************************************************-->
+<!--******************************************************* Ver H2025.12.9.19 *************************************************************-->
+<!--****************************************************** 更新日期：2025.5.14 *************************************************************-->
 <!--********************************************************** 作者：王权 ******************************************************************-->
-<!--******************************************** 版权所有 自由使用 自由复制 自由共享 *********************************************************-->
+<!--********************************************* 版权所有 自由使用 自由复制 自由共享 ********************************************************-->
 <!--***************************************************************************************************************************************-->
 
 
@@ -105,18 +105,18 @@
             text-decoration: none;
         }
 
-        /*保存数据的元素标签 <dr> 设为隐藏*/
+        /* 保存数据的元素标签 <dr> 设为隐藏 */
         .data_saver {
             display: none;
         }
 
-        /*各个泡泡与吸引子之间的连线*/
+        /* 各个泡泡与吸引子之间的连线 */
         .link_line {
             stroke-width: 1;
             fill: none;
         }
 
-        /*内部序参量，一个bubble上各个元素的格式*/
+        /* 下面几个：内部序参量，一个bubble上各个元素的格式 */
         .inner_para1 {
             display: block;
             padding-left: 0px;
@@ -155,7 +155,34 @@
             text-anchor: middle;
         }
 
-        /*外部关联参量，一个block上各个元素的格式*/
+        /* 外部参量块块的格式, DIV，每个块块是一个 DIV */
+        .div_out {
+            display: block;
+            left: 1390px;
+            width: 400px;
+            height: 180px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            position: absolute;
+            opacity: 1;
+            transition: transform 0.3s ease-in-out; /* 平滑过渡效果 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 外部参量块块DIV内的SVG格式 */
+        .svg_out {
+            position:absolute; 
+            left:0px; 
+            top:0px; 
+            width:380px; 
+            height:170px;
+            transform-origin: right bottom;
+        }
+
+        /* 下面几个是：外部关联参量，一个block上各个元素的格式 */
         .outer_para1 {
             fill: #A6A6A6;
             stroke: #000;
@@ -226,7 +253,7 @@
             cursor: pointer;
         }
 
-        /*各个编辑窗口*/
+        /* 各个编辑窗口 */
         .edit_box1 {
             display: none;
             padding-left: 50px;
@@ -243,7 +270,7 @@
             box-shadow: 4px 4px 20px #909090; /*opera或ie9*/
         }
 
-        /*各个显示窗口*/
+        /* 各个显示窗口 */
         .show_box_0 { /*padding=0*/
             display: none;
             padding-left: 0px;
@@ -296,13 +323,13 @@
             box-shadow: 4px 4px 20px #909090; /*opera或ie9*/
         }
 
-        /*各个input文本框*/
+        /* 各个input文本框 */
         .input_text {
             height: 20px;
             font-size: 18px;
         }
 
-        /*各个button*/
+        /* 各个button */
         .button_size_1 {
             height: 32px;
             font-size: 18px;
@@ -356,6 +383,52 @@
         .flash {
             animation: flash 0.5s ease-in-out;
         }
+
+        /* 高亮颜色渐变动画 */
+        /* 泡泡块块动态边框动画 */
+        .bubble-block-dynamic-rainbow {
+            display:none;
+            stroke: url(#rainbow);
+            stroke-width: 8;
+            fill: transparent;
+            animation: 
+                rainbow 2s linear infinite,
+                pulse 5s ease-in-out infinite;
+        }
+
+        /* 彩虹变色动画 */
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* 脉动缩放动画 */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                stroke-width: 8;
+            }
+            50% {
+                transform: scale(1);
+                stroke-width: 12;
+            }
+        }
+
+        /* 概述动态边框动画 */
+        .gen_words-dynamic-rainbow {
+            stroke: url(#rainbow);
+            fill: transparent;
+            animation: 
+                rainbow2 2s linear infinite
+        }
+
+        /* 彩虹变色动画 */
+        @keyframes rainbow2 {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+
     </style>
     <!--  -->
     <!--  -->
@@ -787,7 +860,8 @@
 
                     <!--==================== 下面是内部序参量圆泡泡bubble、外部关联参量块块block图svg 框架文本 ====================-->
                     <svg id="SVG_MAIN" style="position: absolute; top: 140px; left:81px;">
-                        <!-- 内部序参量连接线和外部关联参连块块SVG的区域。注意：内部序参量泡泡不在这里，因为它们需要拖动，每个泡泡要用一个DIV装载，无法在SVG中。 -->
+                        <!-- 内部序参量连接线等。外部关联参量块块、内部序参量泡泡不在这里，因为它们需要拖动和放大，每个泡泡、块块要用一个DIV装载，无法在SVG中。 -->
+
                         <!-- 圆泡泡bubble和方块block阴影、内部文字阴影  -->
                         <defs>
                             <filter id="SHADOW1"><feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>  </filter>
@@ -812,6 +886,8 @@
 
                         <!--  内部序参量连接线  -->
                         <!--  定义连线的箭头  -->  
+                        <!--  关于连线的笔记：连线应一直处在泡泡和块块的下面。当移动泡泡到块块上面时，连线也不应处在块块上面。
+                            所以，不应该在泡泡被移动到块块之上时试图将连线也置于块块之上。已经考虑此问题，并修改过，但最后还是改回来了。 -->
                         <defs>  
                             <marker id="arrow1" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">  
                             <path d="M0,0 L0,6 L9,3 z" fill="#000000" />  
@@ -860,109 +936,16 @@
                         <line id="LN10" class="link_line" marker-end="url(#arrow10)" />
                         <line id="LN11" class="link_line" marker-end="url(#arrow11)" />
 
-                        <!-- 外部关联参量 -->
-                        <g id="OUTER_PARA_1" onclick="" onmouseover="highLightBlock(1);" onmouseout="deHighLightBlock(1);" style="cursor: default; ">
-
-                            <rect id="RT_1_1" x="1325" y="35" rx="21" width="357" height="150" class="outer_para1" />
-                            <rect id="RT_1_2" x="1320" y="30" rx="21" width="357" height="150" class="outer_para2" />
-                            <image id="O_P1_PIC" x="1330" y="40" width="337" height="130" style="display: none;" />
-                            <text id="O_P1_T0" x="1340" y="50" xml:space="preserve" class="outer_para3">[1]</text>
-                            <text id="O_P1_T1_1" x="1362" y="92" xml:space="preserve" class="outer_para4"></text>
-                            <text id="O_P1_T1_2" x="1360" y="90" xml:space="preserve" class="outer_para5"></text>
-                            <text id="O_P1_T2" x="1350" y="126" xml:space="preserve" class="outer_para6"></text>
-                            <text id="O_P1_T3" x="1350" y="155" xml:space="preserve" class="outer_para7"></text>
-                            <g>
-                                <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
-                                <text id="O_P1_LM" x="1364" y="175" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(1);" onmouseout="this.style.fill='#888888'; deHighLightBlock(1);">»»»</text>
-                            </g>
-                        </g>
-
-
-                        <g>
-                            <title>编辑【外部关联参量 1】</title>
-                            <rect id="O_P1_T4_2" x="1627" y="154" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
-                            <text id="O_P1_T4" x="1640" y="165" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(1);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(1);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(1);">...</text>
-                        </g>
-
-                        <g id="OUTER_PARA_2" onclick="" onmouseover="highLightBlock(2);" onmouseout="deHighLightBlock(2);" style="cursor:default;">
-                            <rect id="RT_2_1" x="1325" y="204" rx="21" width="357" height="150" class="outer_para1" />
-                            <rect id="RT_2_2" x="1320" y="199" rx="21" width="357" height="150" class="outer_para2" />
-                            <image id="O_P2_PIC" x="1330" y="209" width="337" height="130" style="display: none;" />
-                            <text id="O_P2_T0" x="1340" y="219" xml:space="preserve" class="outer_para3">[2]</text>
-                            <text id="O_P2_T1_1" x="1362" y="261" xml:space="preserve" class="outer_para4"></text>
-                            <text id="O_P2_T1_2" x="1360" y="259" xml:space="preserve" class="outer_para5"></text>
-                            <text id="O_P2_T2" x="1350" y="295" xml:space="preserve" class="outer_para6"></text>
-                            <text id="O_P2_T3" x="1350" y="324" xml:space="preserve" class="outer_para7"></text>
-                            <g>
-                                <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
-                                <text id="O_P2_LM" x="1364" y="344" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(2);" onmouseout="this.style.fill='#888888'; deHighLightBlock(2);">»»»</text>
-                            </g>
-                        </g>
-                        <g>
-                            <title>编辑【外部关联参量 2】</title>
-                            <rect id="O_P2_T4_2" x="1627" y="323" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
-                            <text id="O_P2_T4" x="1640" y="334" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(2);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(2);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(2);">...</text>
-                        </g>
-
-                        <g id="OUTER_PARA_3" onclick="" onmouseover="highLightBlock(3);" onmouseout="deHighLightBlock(3);" style="cursor:default;">
-                            <rect id="RT_3_1" x="1325" y="373" rx="21" width="357" height="150" class="outer_para1" />
-                            <rect id="RT_3_2" x="1320" y="368" rx="21" width="357" height="150" class="outer_para2" />
-                            <image id="O_P3_PIC" x="1330" y="378" width="337" height="130" style="display: none;" />
-                            <text id="O_P3_T0" x="1340" y="388" xml:space="preserve" class="outer_para3">[3]</text>
-                            <text id="O_P3_T1_1" x="1362" y="430" xml:space="preserve" class="outer_para4"></text>
-                            <text id="O_P3_T1_2" x="1360" y="428" xml:space="preserve" class="outer_para5"></text>
-                            <text id="O_P3_T2" x="1350" y="464" xml:space="preserve" class="outer_para6"></text>
-                            <text id="O_P3_T3" x="1350" y="493" xml:space="preserve" class="outer_para7"></text>
-                            <g>
-                                <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
-                                <text id="O_P3_LM" x="1364" y="513" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(3);" onmouseout="this.style.fill='#888888'; deHighLightBlock(3);">»»»</text>
-                            </g>
-                        </g>
-                        <g>
-                            <title>编辑【外部关联参量 3】</title>
-                            <rect id="O_P3_T4_2" x="1627" y="492" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
-                            <text id="O_P3_T4" x="1640" y="503" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(3);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(3);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(3);">...</text>
-                        </g>
-
-                        <g id="OUTER_PARA_4" onclick="" onmouseover="highLightBlock(4);" onmouseout="deHighLightBlock(4);" style="cursor:default;">
-                            <rect id="RT_4_1" x="1325" y="542" rx="21" width="357" height="150" class="outer_para1" />
-                            <rect id="RT_4_2" x="1320" y="537" rx="21" width="357" height="150" class="outer_para2" />
-                            <image id="O_P4_PIC" x="1330" y="547" width="337" height="130" style="display: none;" />
-                            <text id="O_P4_T0" x="1340" y="557" xml:space="preserve" class="outer_para3">[4]</text>
-                            <text id="O_P4_T1_1" x="1362" y="599" xml:space="preserve" class="outer_para4"></text>
-                            <text id="O_P4_T1_2" x="1360" y="597" xml:space="preserve" class="outer_para5"></text>
-                            <text id="O_P4_T2" x="1350" y="633" xml:space="preserve" class="outer_para6"></text>
-                            <text id="O_P4_T3" x="1350" y="662" xml:space="preserve" class="outer_para7"></text>
-                            <g>
-                                <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
-                                <text id="O_P4_LM" x="1364" y="682" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(4);" onmouseout="this.style.fill='#888888'; deHighLightBlock(4);">»»»</text>
-                            </g>
-                        </g>
-                        <g>
-                            <title>编辑【外部关联参量 4】</title>
-                            <rect id="O_P4_T4_2" x="1627" y="661" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
-                            <text id="O_P4_T4" x="1640" y="672" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(4);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(4);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(4);">...</text>
-                        </g>
-
-                        <g id="OUTER_PARA_5" onclick="" onmouseover="highLightBlock(5);" onmouseout="deHighLightBlock(5);" style="cursor:default;">
-                            <rect id="RT_5_1" x="1325" y="711" rx="21" width="357" height="150" class="outer_para1" />
-                            <rect id="RT_5_2" x="1320" y="706" rx="21" width="357" height="150" class="outer_para2" />
-                            <image id="O_P5_PIC" x="1330" y="716" width="337" height="130" style="display: none;" />
-                            <text id="O_P5_T0" x="1340" y="726" xml:space="preserve" class="outer_para3">[5]</text>
-                            <text id="O_P5_T1_1" x="1362" y="768" xml:space="preserve" class="outer_para4"></text>
-                            <text id="O_P5_T1_2" x="1360" y="766" xml:space="preserve" class="outer_para5"></text>
-                            <text id="O_P5_T2" x="1350" y="802" xml:space="preserve" class="outer_para6"></text>
-                            <text id="O_P5_T3" x="1350" y="831" xml:space="preserve" class="outer_para7"></text>
-                            <g>
-                                <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
-                                <text id="O_P5_LM" x="1364" y="851" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(5);" onmouseout="this.style.fill='#888888'; deHighLightBlock(5);">»»»</text>
-                            </g>
-                        </g>
-                        <g>
-                            <title>编辑【外部关联参量 5】</title>
-                            <rect id="O_P5_T4_2" x="1627" y="830" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
-                            <text id="O_P5_T4" x="1640" y="841" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(5);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(5);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(5);">...</text>
-                        </g>
+                        <!-- 播放时，高亮彩虹边框闪烁时使用 -->
+                        <defs>
+                            <linearGradient id="rainbow">
+                                <stop offset="0%" stop-color="#FF0000"/>
+                                <stop offset="25%" stop-color="#FF7F00"/>
+                                <stop offset="50%" stop-color="#FFFF00"/>
+                                <stop offset="75%" stop-color="#00FF00"/>
+                                <stop offset="100%" stop-color="#0000FF"/>
+                            </linearGradient>
+                        </defs>
 
                         <!-- 内部序参量指示签  -->
                         <g>
@@ -1013,23 +996,163 @@
                                   onclick="editOutMark();"
                                   style="cursor:text;"
                                   onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; textElement2.setAttribute('fill', 'rgb(255, 85, 0)');"
-                                  onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; textElement2.setAttribute('fill', 'rgb(255, 255, 255)');">...</text>-->
+                                  onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; textElement2.setAttribute('fill', 'rgb(255, 255, 255)');">...</text>
                         </g>
 
-                    </svg><!-- 连线和块块SVG结束 -->
+                    </svg><!-- 连线等结束 -->
 
                 </div><!-- <div  id="DIV_WORK">结束 -->
                 <!--  -->
                 <!--  -->
                 <!--  -->
                 <!--  -->
+                <!-- 下面是外部关联参量，每个块块都是一个单独的div，为了放大 -->
+                <div id="DIV_OUT_1" class="div_out" style="top: 160px;">
+                    <svg class="svg_out">
+                        <g id="G_OUT_1">
+                            <g id="OUTER_PARA_1" onclick="" onmouseover="highLightBlock(1);" onmouseout="deHighLightBlock(1);" style="cursor: default; ">
+                                <rect id="RT_1_1" x="15" y="15" rx="21" width="357" height="150" class="outer_para1" />
+                                <rect id="RT_1_2" x="10" y="10" rx="21" width="357" height="150" class="outer_para2" />
+                                <rect id="RT_1_3" x="10" y="10" rx="21" width="357" height="150" class="bubble-block-dynamic-rainbow" />
+                                <image id="O_P1_PIC" x="20" y="20" width="337" height="130" style="display: none;" />
+                                <text id="O_P1_T0" x="30" y="30" xml:space="preserve" class="outer_para3">[1]</text>
+                                <text id="O_P1_T1_1" x="52" y="72" xml:space="preserve" class="outer_para4"></text>
+                                <text id="O_P1_T1_2" x="50" y="70" xml:space="preserve" class="outer_para5"></text>
+                                <text id="O_P1_T2" x="40" y="106" xml:space="preserve" class="outer_para6"></text>
+                                <text id="O_P1_T3" x="40" y="135" xml:space="preserve" class="outer_para7"></text>
+                                <g>
+                                    <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
+                                    <text id="O_P1_LM" x="54" y="155" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(1);" onmouseout="this.style.fill='#888888'; deHighLightBlock(1);">»»»</text>
+                                </g>
+                            </g>
+                            <g>
+                                <title>编辑【外部关联参量 1】</title>
+                                <rect id="O_P1_T4_2" x="317" y="134" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
+                                <text id="O_P1_T4" x="330" y="145" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(1);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(1);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(1);">...</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div id="DIV_OUT_2" class="div_out" style="top: 330px;">
+                    <svg class="svg_out">
+                        <g id="G_OUT_2">
+                            <g id="OUTER_PARA_2" onclick="" onmouseover="highLightBlock(2);" onmouseout="deHighLightBlock(2);" style="cursor: default; ">
+                                <rect id="RT_2_1" x="15" y="15" rx="21" width="357" height="150" class="outer_para1" />
+                                <rect id="RT_2_2" x="10" y="10" rx="21" width="357" height="150" class="outer_para2" />
+                                <rect id="RT_2_3" x="10" y="10" rx="21" width="357" height="150" class="bubble-block-dynamic-rainbow" />
+                                <image id="O_P2_PIC" x="20" y="20" width="337" height="130" style="display: none;" />
+                                <text id="O_P2_T0" x="30" y="30" xml:space="preserve" class="outer_para3">[2]</text>
+                                <text id="O_P2_T1_1" x="52" y="72" xml:space="preserve" class="outer_para4"></text>
+                                <text id="O_P2_T1_2" x="50" y="70" xml:space="preserve" class="outer_para5"></text>
+                                <text id="O_P2_T2" x="40" y="106" xml:space="preserve" class="outer_para6"></text>
+                                <text id="O_P2_T3" x="40" y="135" xml:space="preserve" class="outer_para7"></text>
+                                <g>
+                                    <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
+                                    <text id="O_P2_LM" x="54" y="155" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(2);" onmouseout="this.style.fill='#888888'; deHighLightBlock(2);">»»»</text>
+                                </g>
+                            </g>
+                            <g>
+                                <title>编辑【外部关联参量 2】</title>
+                                <rect id="O_P2_T4_2" x="317" y="134" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
+                                <text id="O_P2_T4" x="330" y="145" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(2);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(2);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(2);">...</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div id="DIV_OUT_3" class="div_out" style="top: 500px;">
+                    <svg class="svg_out">
+                        <g id="G_OUT_3">
+                            <g id="OUTER_PARA_3" onclick="" onmouseover="highLightBlock(3);" onmouseout="deHighLightBlock(3);" style="cursor: default; ">
+                                <rect id="RT_3_1" x="15" y="15" rx="21" width="357" height="150" class="outer_para1" />
+                                <rect id="RT_3_2" x="10" y="10" rx="21" width="357" height="150" class="outer_para2" />
+                                <rect id="RT_3_3" x="10" y="10" rx="21" width="357" height="150" class="bubble-block-dynamic-rainbow" />
+                                <image id="O_P3_PIC" x="20" y="20" width="337" height="130" style="display: none;" />
+                                <text id="O_P3_T0" x="30" y="30" xml:space="preserve" class="outer_para3">[3]</text>
+                                <text id="O_P3_T1_1" x="52" y="72" xml:space="preserve" class="outer_para4"></text>
+                                <text id="O_P3_T1_2" x="50" y="70" xml:space="preserve" class="outer_para5"></text>
+                                <text id="O_P3_T2" x="40" y="106" xml:space="preserve" class="outer_para6"></text>
+                                <text id="O_P3_T3" x="40" y="135" xml:space="preserve" class="outer_para7"></text>
+                                <g>
+                                    <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
+                                    <text id="O_P3_LM" x="54" y="155" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(3);" onmouseout="this.style.fill='#888888'; deHighLightBlock(3);">»»»</text>
+                                </g>
+                            </g>
+                            <g>
+                                <title>编辑【外部关联参量 3】</title>
+                                <rect id="O_P3_T4_2" x="317" y="134" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
+                                <text id="O_P3_T4" x="330" y="145" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(3);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(3);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(3);">...</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div id="DIV_OUT_4" class="div_out" style="top: 670px;">
+                    <svg class="svg_out">
+                        <g id="G_OUT_4">
+                            <g id="OUTER_PARA_4" onclick="" onmouseover="highLightBlock(4);" onmouseout="deHighLightBlock(4);" style="cursor: default; ">
+                                <rect id="RT_4_1" x="15" y="15" rx="21" width="357" height="150" class="outer_para1" />
+                                <rect id="RT_4_2" x="10" y="10" rx="21" width="357" height="150" class="outer_para2" />
+                                <rect id="RT_4_3" x="10" y="10" rx="21" width="357" height="150" class="bubble-block-dynamic-rainbow" />
+                                <image id="O_P4_PIC" x="20" y="20" width="337" height="130" style="display: none;" />
+                                <text id="O_P4_T0" x="30" y="30" xml:space="preserve" class="outer_para3">[4]</text>
+                                <text id="O_P4_T1_1" x="52" y="72" xml:space="preserve" class="outer_para4"></text>
+                                <text id="O_P4_T1_2" x="50" y="70" xml:space="preserve" class="outer_para5"></text>
+                                <text id="O_P4_T2" x="40" y="106" xml:space="preserve" class="outer_para6"></text>
+                                <text id="O_P4_T3" x="40" y="135" xml:space="preserve" class="outer_para7"></text>
+                                <g>
+                                    <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
+                                    <text id="O_P4_LM" x="54" y="155" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(4);" onmouseout="this.style.fill='#888888'; deHighLightBlock(4);">»»»</text>
+                                </g>
+                            </g>
+                            <g>
+                                <title>编辑【外部关联参量 4】</title>
+                                <rect id="O_P4_T4_2" x="317" y="134" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
+                                <text id="O_P4_T4" x="330" y="145" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(4);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(4);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(4);">...</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div id="DIV_OUT_5" class="div_out" style="top: 840px;">
+                    <svg class="svg_out">
+                        <g id="G_OUT_5">
+                            <g id="OUTER_PARA_5" onclick="" onmouseover="highLightBlock(5);" onmouseout="deHighLightBlock(5);" style="cursor: default; ">
+                                <rect id="RT_5_1" x="15" y="15" rx="21" width="357" height="150" class="outer_para1" />
+                                <rect id="RT_5_2" x="10" y="10" rx="21" width="357" height="150" class="outer_para2" />
+                                <rect id="RT_5_3" x="10" y="10" rx="21" width="357" height="150" class="bubble-block-dynamic-rainbow" />
+                                <image id="O_P5_PIC" x="20" y="20" width="337" height="130" style="display: none;" />
+                                <text id="O_P5_T0" x="30" y="30" xml:space="preserve" class="outer_para3">[5]</text>
+                                <text id="O_P5_T1_1" x="52" y="72" xml:space="preserve" class="outer_para4"></text>
+                                <text id="O_P5_T1_2" x="50" y="70" xml:space="preserve" class="outer_para5"></text>
+                                <text id="O_P5_T2" x="40" y="106" xml:space="preserve" class="outer_para6"></text>
+                                <text id="O_P5_T3" x="40" y="135" xml:space="preserve" class="outer_para7"></text>
+                                <g>
+                                    <title>打开【链接】：2种方式：①鼠标或触屏【点击】本图元；②播放到当前位置时，按【回车】，或者，连按2次【右箭头】或【下一页】或 翻页笔【下一页】</title>
+                                    <text id="O_P5_LM" x="54" y="155" class="inner_outer_para_edit3" onmouseover="this.style.fill='#FF0000'; highLightBlock(5);" onmouseout="this.style.fill='#888888'; deHighLightBlock(5);">»»»</text>
+                                </g>
+                            </g>
+                            <g>
+                                <title>编辑【外部关联参量 5】</title>
+                                <rect id="O_P5_T4_2" x="317" y="134" rx="0" width="25" height="20" class="inner_outer_para_edit1" />
+                                <text id="O_P5_T4" x="330" y="145" font-size="23" class="inner_outer_para_edit2" xml:space="preserve" onclick="editOuterPara(5);" onmouseover="this.style.fill='#FFFFFF'; $(this.id + '_2').style.fillOpacity='100'; highLightBlock(5);" onmouseout="this.style.fill='#888888'; $(this.id + '_2').style.fillOpacity='0'; deHighLightBlock(5);">...</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <!--  -->
+                <!--  -->
+                <!--  -->
+                <!--  -->
                 <!-- 下面是内部序参量泡泡，每个泡泡用一个DIV装载，不在上面<svg id="SVG_MAIN">中，以便拖动。 -->
-                <div id="DIV_1" class="inner_para1">
+                <div id="DIV_IN_1" class="inner_para1">
                     <svg id="SVG_1" style="background-color:none;">
 
                         <g id="INNER_PARA_1" onclick="" onmouseover="highLightBubble(1);" onmouseout="deHighLightBubble(1);" style="cursor:default;">
                             <circle id="CR_1_1" cx="918.5852766452272" cy="384.2840394910918" r="116.10000000000001" class="inner_para2"></circle>
                             <circle id="CR_1_2" cx="913.5852766452272" cy="379.2840394910918" r="116.10000000000001" class="inner_para3"></circle>
+                            <circle id="CR_1_3" class="bubble-block-dynamic-rainbow"></circle>
                             <defs>
                                 <!-- 后面各个泡泡都引用此定义 -->
                                 <clipPath id="circleClip" clipPathUnits="objectBoundingBox">
@@ -1059,12 +1182,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_2" class="inner_para1">
+                <div id="DIV_IN_2" class="inner_para1">
                     <svg id="SVG_2" style="background-color:none;">
 
                         <g id="INNER_PARA_2" onclick="" onmouseover="highLightBubble(2);" onmouseout="deHighLightBubble(2);" style="cursor:default;">
                             <circle id="CR_2_1" cx="180.8434771494048" cy="615.6530228658521" r="109.64999999999999" class="inner_para2"></circle>
                             <circle id="CR_2_2" cx="175.8434771494048" cy="610.6530228658521" r="109.64999999999999" class="inner_para3"></circle>
+                            <circle id="CR_2_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P2_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="235" height="235" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P2_T0" x="195.8434771494048" y="572.1217728658521" font-size="21.93" class="inner_para4" xml:space="preserve">[2]</text>
                             <text id="I_P2_T1_1" x="197.8434771494048" y="620.723022865852" font-size="43.86" class="inner_para5" xml:space="preserve"></text>
@@ -1088,12 +1212,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_3" class="inner_para1">
+                <div id="DIV_IN_3" class="inner_para1">
                     <svg id="SVG_3" style="background-color:none;">
 
                         <g id="INNER_PARA_3" onclick="" onmouseover="highLightBubble(3);" onmouseout="deHighLightBubble(3);" style="cursor:default;">
                             <circle id="CR_3_1" cx="1185.0350621965156" cy="566.9957267194883" r="96.75" class="inner_para2"></circle>
                             <circle id="CR_3_2" cx="1180.0350621965156" cy="561.9957267194883" r="96.75" class="inner_para3"></circle>
+                            <circle id="CR_3_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P3_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="205" height="205" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P3_T0" x="1180.0350621965156" y="501.5269767194883" font-size="19.35" class="inner_para4" xml:space="preserve">[3]</text>
                             <text id="I_P3_T1_1" x="1182.0350621965156" y="544.6457267194883" font-size="38.7" class="inner_para5" xml:space="preserve"></text>
@@ -1117,12 +1242,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_4" class="inner_para1">
+                <div id="DIV_IN_4" class="inner_para1">
                     <svg id="SVG_4" style="background-color:none;">
 
                         <g id="INNER_PARA_4" onclick="" onmouseover="highLightBubble(4);" onmouseout="deHighLightBubble(4);" style="cursor:default;">
                             <circle id="CR_4_1" cx="314.7230221703111" cy="443.51556762634834" r="90.3" class="inner_para2"></circle>
                             <circle id="CR_4_2" cx="309.7230221703111" cy="438.51556762634834" r="90.3" class="inner_para3"></circle>
+                            <circle id="CR_4_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P4_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="190" height="190" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P4_T0" x="309.7230221703111" y="382.07806762634834" font-size="18.06" class="inner_para4" xml:space="preserve">[4]</text>
                             <text id="I_P4_T1_1" x="311.7230221703111" y="422.4555676263483" font-size="36.12" class="inner_para5" xml:space="preserve"></text>
@@ -1146,12 +1272,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_5" class="inner_para1">
+                <div id="DIV_IN_5" class="inner_para1">
                     <svg id="SVG_5" style="background-color:none;">
 
                         <g id="INNER_PARA_5" onclick="" onmouseover="highLightBubble(5);" onmouseout="deHighLightBubble(5);" style="cursor:default;">
                             <circle id="CR_5_1" cx="854.1459520140091" cy="704.4683700417525" r="83.85000000000001" class="inner_para2"></circle>
                             <circle id="CR_5_2" cx="849.1459520140091" cy="699.4683700417525" r="83.85000000000001" class="inner_para3"></circle>
+                            <circle id="CR_5_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P5_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="175" height="175" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P5_T0" x="849.1459520140091" y="647.0621200417525" font-size="16.77" class="inner_para4" xml:space="preserve">[5]</text>
                             <text id="I_P5_T1_1" x="851.1459520140091" y="684.6983700417525" font-size="33.54" class="inner_para5" xml:space="preserve"></text>
@@ -1175,12 +1302,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_6" class="inner_para1">
+                <div id="DIV_IN_6" class="inner_para1">
                     <svg id="SVG_6" style="background-color:none;">
 
                         <g id="INNER_PARA_6" onclick="" onmouseover="highLightBubble(6);" onmouseout="deHighLightBubble(6);" style="cursor:default;">
                             <circle id="CR_6_1" cx="441.54022587465755" cy="660.0072064353187" r="77.39999999999999" class="inner_para2"></circle>
                             <circle id="CR_6_2" cx="436.54022587465755" cy="655.0072064353187" r="77.39999999999999" class="inner_para3"></circle>
+                            <circle id="CR_6_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P6_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="160" height="160" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P6_T0" x="436.54022587465755" y="606.6322064353187" font-size="15.48" class="inner_para4" xml:space="preserve">[6]</text>
                             <text id="I_P6_T1_1" x="438.54022587465755" y="641.5272064353187" font-size="30.96" class="inner_para5" xml:space="preserve"></text>
@@ -1204,12 +1332,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_7" class="inner_para1">
+                <div id="DIV_IN_7" class="inner_para1">
                     <svg id="SVG_7" style="background-color:none;">
 
                         <g id="INNER_PARA_7" onclick="" onmouseover="highLightBubble(7);" onmouseout="deHighLightBubble(7);" style="cursor:default;">
                             <circle id="CR_7_1" cx="1214.2204871047222" cy="341.11031093341694" r="70.95" class="inner_para2"></circle>
                             <circle id="CR_7_2" cx="1209.2204871047222" cy="336.11031093341694" r="70.95" class="inner_para3"></circle>
+                            <circle id="CR_7_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P7_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="145" height="145" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P7_T0" x="1209.2204871047222" y="291.76656093341694" font-size="14.190000000000001" class="inner_para4" xml:space="preserve">[7]</text>
                             <text id="I_P7_T1_1" x="1211.2204871047222" y="323.92031093341694" font-size="28.380000000000003" class="inner_para5" xml:space="preserve"></text>
@@ -1233,12 +1362,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_8" class="inner_para1">
+                <div id="DIV_IN_8" class="inner_para1">
                     <svg id="SVG_8" style="background-color:none;">
 
                         <g id="INNER_PARA_8" onclick="" onmouseover="highLightBubble(8);" onmouseout="deHighLightBubble(8);" style="cursor:default;">
                             <circle id="CR_8_1" cx="699.6639435087537" cy="721.1943786841065" r="64.5" class="inner_para2"></circle>
                             <circle id="CR_8_2" cx="694.6639435087537" cy="716.1943786841065" r="64.5" class="inner_para3"></circle>
+                            <circle id="CR_8_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P8_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="130" height="130" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P8_T0" x="694.6639435087537" y="675.8818786841065" font-size="12.9" class="inner_para4" xml:space="preserve">[8]</text>
                             <text id="I_P8_T1_1" x="696.6639435087537" y="705.2943786841065" font-size="25.8" class="inner_para5" xml:space="preserve"></text>
@@ -1262,12 +1392,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_9" class="inner_para1">
+                <div id="DIV_IN_9" class="inner_para1">
                     <svg id="SVG_9" style="background-color:none;">
 
                         <g id="INNER_PARA_9" onclick="" onmouseover="highLightBubble(9);" onmouseout="deHighLightBubble(9);" style="cursor:default;">
                             <circle id="CR_9_1" cx="137.68466875524877" cy="422.34840565591145" r="58.050000000000004" class="inner_para2"></circle>
                             <circle id="CR_9_2" cx="132.68466875524877" cy="417.34840565591145" r="58.050000000000004" class="inner_para3"></circle>
+                            <circle id="CR_9_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P9_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="116" height="116" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P9_T0" x="132.68466875524877" y="381.06715565591145" font-size="11.610000000000001" class="inner_para4" xml:space="preserve">[9]</text>
                             <text id="I_P9_T1_1" x="134.68466875524877" y="407.73840565591144" font-size="23.220000000000002" class="inner_para5" xml:space="preserve"></text>
@@ -1291,12 +1422,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_10" class="inner_para1">
+                <div id="DIV_IN_10" class="inner_para1">
                     <svg id="SVG_10" style="background-color:none;">
 
                         <g id="INNER_PARA_10" onclick="" onmouseover="highLightBubble(10);" onmouseout="deHighLightBubble(10);" style="cursor:default;">
                             <circle id="CR_10_1" cx="1112.7908783027272" cy="391.1300565895247" r="45.15" class="inner_para2"></circle>
                             <circle id="CR_10_2" cx="1107.7908783027272" cy="386.1300565895247" r="45.15" class="inner_para3"></circle>
+                            <circle id="CR_10_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P10_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="86" height="86" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P10_T0" x="1107.7908783027272" y="357.9113065895247" font-size="9.03" class="inner_para4" xml:space="preserve">[10]</text>
                             <text id="I_P10_T1_1" x="1109.7908783027272" y="379.1000565895247" font-size="18.06" class="inner_para5" xml:space="preserve"></text>
@@ -1320,12 +1452,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_11" class="inner_para1">
+                <div id="DIV_IN_11" class="inner_para1">
                     <svg id="SVG_11" style="background-color:none;">
 
                         <g id="INNER_PARA_11" onclick="" onmouseover="highLightBubble(11);" onmouseout="deHighLightBubble(11);" style="cursor:default;">
                             <circle id="CR_11_1" cx="124.10984827300052" cy="288.1402915153433" r="38.699999999999996" class="inner_para2"></circle>
                             <circle id="CR_11_2" cx="119.10984827300052" cy="283.1402915153433" r="38.699999999999996" class="inner_para3"></circle>
+                            <circle id="CR_11_3" class="bubble-block-dynamic-rainbow"></circle>
                             <image id="I_P11_PIC" preserveAspectRatio="xMidYMid slice" x="0" y="0" width="72" height="72" clip-path="url(#circleClip)" style="display: none;" />
                             <text id="I_P11_T0" x="119.10984827300052" y="258.9527915153433" font-size="7.74" class="inner_para4" xml:space="preserve">[11]</text>
                             <text id="I_P11_T1_1" x="121.10984827300052" y="277.40029151534327" font-size="15.48" class="inner_para5" xml:space="preserve"></text>
@@ -1349,12 +1482,13 @@
                     </svg>
                 </div>
 
-                <div id="DIV_0" class="inner_para1">
+                <div id="DIV_IN_0" class="inner_para1">
                     <svg id="SVG_0" style="background-color:none;">
 
                         <g id="SYS_ATTRACTOR" onclick="" onmouseover="highLightBubble(0);" onmouseout="deHighLightBubble(0);" style="cursor:default;">
                             <circle id="CR_0_1" cx="5" cy="5" r="129" class="inner_para2"></circle>
                             <circle id="CR_0_2" cx="0" cy="0" r="129" class="inner_para3"></circle>
+                            <circle id="CR_0_3" class="bubble-block-dynamic-rainbow"></circle>
                             <defs>
                                 <!-- 此处必须单独定义，否则在渐进播放时出错，表现：如果此泡泡带有图片，在从概述跳到吸引子（即此泡泡）时，圆形剪裁失效。在此单独定义后，故障解除 -->
                                 <clipPath id="circleClip0" clipPathUnits="objectBoundingBox">
@@ -1417,12 +1551,12 @@
             <!--=============================================== 下面是用于编辑等互操作的窗口、菜单等  ================================================-->
             <!--===================================================================================================================================-->
             <!--===================================================================================================================================-->
-            <!--  -->
+            
             <!--  -->
             <!--  -->
             <!--  -->
             <!--====================================== 下面是显示概述信息的窗口 ========================================-->
-            <div id="GEN_WORDS_BOX" style="display: block; left: 150px; top: 200px; width: 1160px; font-size: 32px; text-align:justify; background-color: #FFFFFF; border: 1px; opacity: 1; cursor: default; z-index: 2000;" class="show_box_20"
+            <div id="GEN_WORDS_BOX" style="display: block; left: 150px; top: 200px; width: 1160px; font-size: 32px; text-align:justify; background-color: #FFFFFF; border: 1px; opacity: 1; cursor: default; z-index: 2000; transition: transform 0.3s ease-in-out; transform-origin: 0 0;" class="show_box_20"
                  onmouseover="highLightGenWords();"
                  onmouseout="deHighLightGenWords();">
                 <!-- 概述框内的小标题 -->
@@ -2345,7 +2479,7 @@
                         <br /><br />
                         <span id="SUGGEST_INFO">文字由后面程序设定</span>
                         <form name="show_welcome">
-<!--====================================== 下面 title 的文字可以换行正常显示，不要格式化 ===================================-->
+<!--====================================== 下面 title 的文字可以换行正常显示，不要格式化，不要修改格式 ===================================-->
                             <button id="BUTTON_PLAY_WELCOME" type="button" class="button_size_1" style="width: 160px; cursor:pointer;" onclick="goIntoFullScreenAndPlay();" title="
 .
 【播放向导】
@@ -2387,7 +2521,7 @@
         "
 
     >新建/编辑 ...</button>
-<!--====================================== 上面 title 的文字可以换行正常显示，不要格式化 ===================================-->
+<!--====================================== 上面 title 的文字可以换行正常显示，不要格式化，把要修改格式 ===================================-->
                             <button id="BUTTON_QUIT_WELCOME" type="button" class="button_size_1" style="width:60px;" onclick="quitAHMM();">退出</button>
                             <button id="BUTTON_INTRO_WELCOME" type="button" class="button_size_1" style="width:60px;" onclick="introAHMM();">示例</button>
                             <button id="BUTTON_MOBILE_MODE_WELCOME" type="button" class="button_size_1" style="width:170px;" onclick="forceIntoMobileMode();">进入移动模式</button>
@@ -2625,11 +2759,11 @@
                 // 常量、全局变量等不可在<head>中定义，因为<head>中JS代码只载入但不执行，因此应在<body>中
 
                 // 定义常量。标准设置以全屏显示时所见为准。
-                const AHMM_VERSION = "H2024.9.19.12";  // 当前版本号
-                const AHMM_LAST_TIME = "2024-09-19 00:00:00";   // 当前版本发布更新时间
+                const AHMM_VERSION = "H2025.12.9.19";  // 当前版本号，每次更新版本时要修改
+                const AHMM_LAST_TIME = "2025-05-13 00:00:00";   // 当前版本发布更新时间，应修改为与版本号相对应的时间
 
-                const AHMM_CREATION_TIME = "2012-09-19 00:00:00";  // AHMM软件初创时间
-                const AHMM_CREATION_VERSION = "0.0.1 (自创生)";   // AHMM软件初创版本
+                const AHMM_CREATION_TIME = "2012-09-19 00:00:00";  // AHMM软件初创时间，不要修改
+                const AHMM_CREATION_VERSION = "0.0.1 (自创生)";   // AHMM软件初创版本，不要修改
 
                 const AHMM_TITLE = "+全息脑图标题";  // 程序名称，默认标题
                 const AHMM_GENWORDS = "[+概述]<span style='color: #AA0000; font-family: 楷体; font-size: 40px; font-weight: bold;'>全息脑图</span>是按照大系统思维原理制作的新型思维导图。让您以系统的观点看世界，专注系统的结构信息——全息，抓住事物的本质，透过表象和数据发现规律。单击各个【...】编辑脑图，【≚】排版配色，&lt;<span style='color: #AA0000;'>Ctrl+S</span>&gt;键（苹果电脑为Command+S）或浏览器菜单【保存/下载】永久保存。";  // 默认概述
@@ -3451,15 +3585,13 @@
                             r1 += 5;
                             r2 += 10;
                             // 在直角坐标系中，利用坐标计算连线起止点
-                            l = Math.sqrt((x2-x1) * (x2-x1) + (y2-y1) * (y2-y1));
+                            l = Math.sqrt((x2-x1) * (x2-x1) + (y2-y1) * (y2-y1)) - 10;  // 10是泡泡边框离箭头的距离，不让箭头接上泡泡
                             m = y2 - y1;
                             n = x2 - x1;
+                            ya = y1;
+                            xa = x1;
                             sina = m / l;
                             cosa = n / l;
-                            dy1 = r1 * sina;
-                            ya = y1 + dy1;
-                            dx1 = r1 * cosa;
-                            xa = x1 +dx1;
                             dy2 = r2 * sina;
                             yb = y2 - dy2;
                             dx2 = r2 * cosa;
@@ -3469,15 +3601,6 @@
                             xb -= 2;
                             ya -= 2;
                             yb -= 2;
-                            // 当两个泡泡重叠时，连线方向需要反转一下
-                            if (r1 + r2 > l) {
-                                t = xa;
-                                xa = xb;
-                                xb = t;
-                                t = ya;
-                                ya = yb;
-                                yb = t;
-                            }
 
                             // 设置连线坐标
                             g_tmpID = "LN" + g_iBubble;
@@ -3765,7 +3888,7 @@
 
                     // DIV和SVG层
                     g_tmpValue = g_iLocR * 2 + 25;
-                    g_tmpID = 'DIV_' + no;
+                    g_tmpID = "DIV_IN_" + no;
                     $(g_tmpID).style.width = g_tmpValue + "px";
                     $(g_tmpID).style.height = g_tmpValue + "px";
                     $(g_tmpID).style.left = g_iLocX + "px";
@@ -3807,6 +3930,15 @@
                     g_tmpValue = g_colorOpacity[g_colorOpacityNo];
                     setAttr(g_tmpID, "opacity", g_tmpValue);
                     setAttr(g_tmpID, "stroke-dasharray", "1, 0");
+
+                    // 彩虹高亮圆圈
+                    g_tmpID = 'CR_' + no + '_3';
+                    g_tmpValue = g_iLocR + INNER_OFFSET;   // g_iLocX;
+                    setAttr(g_tmpID, "cx", g_tmpValue);
+                    g_tmpValue = g_iLocR + INNER_OFFSET; // g_iLocY;
+                    setAttr(g_tmpID, "cy", g_tmpValue);
+                    g_tmpValue = g_iLocR;
+                    setAttr(g_tmpID, "r", g_tmpValue);
 
                     // 图片
                     g_tmpID = "I_P" + no + "_PIC";
@@ -4087,11 +4219,11 @@
                     }
 
                     // 按缩放比例显示
-                    $("DIV_" + no).style.transform = "scale(" + g_bubbleScale[no] + ")";
+                    $("DIV_IN_" + no).style.transform = "scale(" + g_bubbleScale[no] + ")";
 
                     // 显示或隐藏泡泡。把标记(hide)的泡泡隐藏，连同连线
                     if (g_bubbleText0[no].toLowerCase().indexOf("(hide)") == -1) {   // 当前泡泡没有设为隐藏
-                        $("DIV_" + no).style.display = "block";
+                        $("DIV_IN_" + no).style.display = "block";
                         if (g_colorOpacity[g_colorOpacityNo] < 1.0) {   // 如果配色是透明的，则不显示连线
                             $("LN" + no).style.display = "none";
                         }
@@ -4099,7 +4231,7 @@
                             $("LN" + no).style.display = "block";
                         }
                     } else {  // 当前泡泡被设为隐藏
-                        $("DIV_" + no).style.display = "none";
+                        $("DIV_IN_" + no).style.display = "none";
                         $("LN" + no).style.display = "none";
                     }
 
@@ -4687,6 +4819,7 @@
                     g_nextPage = "";
                     g_homePage = "";
                     g_faceCover = "";
+                    g_backCover = "";
                     g_sequentialPlay = "";
                     g_showTimeWhenPlay = "";
                     g_storyLine = "";
@@ -4816,6 +4949,7 @@
                     g_nextPage = "";
                     g_homePage = "";
                     g_faceCover = "";
+                    g_backCover = "";
                     g_sequentialPlay = "";
                     g_showTimeWhenPlay = "";
                     g_storyLine = "";
@@ -5181,7 +5315,7 @@
 
                     var tID, tID2, strT, strT2;
 
-                    tID = "DIV_" + g_currentBubbleID;
+                    tID = "DIV_IN_" + g_currentBubbleID;
                     $(tID).style.display = "none";
                     tID2 = "LN" + g_currentBubbleID;
                     // $(tID2).style.strokeWidth = "0";
@@ -7218,7 +7352,7 @@
                     hideShowHide();
                     var i, tID, tID2, strT, strT2, strT3;
                     for (i = 1; i < g_iParaID.length; i++) {
-                        tID = "DIV_" + i;
+                        tID = "DIV_IN_" + i;
                         tID2 = "LN" + i;
                         strT = g_bubbleText0[i];
                         strT2 = "";
@@ -7250,7 +7384,7 @@
                 function showAllBubblesMust() {
                     var i, tID, tID2;
                     for (i = 0; i < g_iParaID.length; i++) {
-                        tID = "DIV_" + i;
+                        tID = "DIV_IN_" + i;
                         tID2 = "LN" + i;
                         $(tID).style.display = "block";
                         $(tID2).style.display = "block";
@@ -7605,13 +7739,21 @@
                         g_keepHighLight = false;
                         deHighLightAll();
 
+                        $("DIV_IN_" + no).style.display = "block";
+
                         var selfScale = parseFloat(g_bubbleScale[no]);   // selfScale 为单个bubble的缩放比例， /selfScale 消除高亮时边线变粗
 
-                        var tmpID = 'CR_' + no + '_2';
-                        setAttr(tmpID, "stroke", "#FF5500");
-                        setAttr(tmpID, "stroke-width", 15 / selfScale + "");
-                        setAttr(tmpID, "stroke-dasharray", 5 / selfScale + ", " + 3 / selfScale);
-                        $("DIV_" + no).style.display = "block";
+                        // 处理高亮
+                        if (g_inFullScreen) {
+                            // 播放时显示彩虹圈
+                            $("CR_" + no + "_3").style.display = "block";
+                        } else {
+                            // 编辑时显示橙色虚线圈
+                            var tmpID = 'CR_' + no + '_2';
+                            setAttr(tmpID, "stroke", "#FF5500");
+                            setAttr(tmpID, "stroke-width", 15 / selfScale + "");
+                            setAttr(tmpID, "stroke-dasharray", 5 / selfScale + ", " + 3 / selfScale);
+                        }
 
                         if (g_colorOpacity[g_colorOpacityNo] < 1.0) {   // 如果配色是透明的，则不显示连线
                             $("LN" + no).style.display = "none";
@@ -7619,11 +7761,11 @@
                         else {
                             $("LN" + no).style.display = "block";
                         }
-
+                        
                         // 放大显示，仅在播放时
                         if (g_inFullScreen) {
                             var scale = 2 * selfScale;
-                            tmpID = 'DIV_' + no;
+                            tmpID = "DIV_IN_" + no;
                             $(tmpID).style.transform = `scale(${scale})`;
                             g_zIndexBeforeScale = $(tmpID).style.zIndex;   // 记录原来的
                             $(tmpID).style.zIndex = g_zIndexAfterScale++;  // 置顶
@@ -7653,8 +7795,12 @@
 
                         // 缩回原来大小
                         var scale = g_bubbleScale[no];
-                        tmpID = 'DIV_' + no;
+                        tmpID = "DIV_IN_" + no;
                         $(tmpID).style.transform = `scale(${scale})`;
+
+                        // 隐藏彩虹圈
+                        $("CR_" + no + "_3").style.display = "none";
+                        
 
                         // 恢复 zIndex
                         // 只有在全屏播放时恢复
@@ -7681,11 +7827,19 @@
                         g_keepHighLight = false;
                         deHighLightAll();
 
-                        var tmpID = 'RT_' + no + '_2';
-                        setAttr(tmpID, "stroke", "#FF5500");
-                        setAttr(tmpID, "stroke-width", "15");
-                        setAttr(tmpID, "stroke-dasharray", "5, 3");
-                        $("OUTER_PARA_" + no).style.display = "block";
+                        $("DIV_OUT_" + no).style.display = "block";
+
+                        // 处理高亮
+                        if (g_inFullScreen) {
+                            // 播放时显示彩虹框
+                            $("RT_" + no + "_3").style.display = "block";
+                        } else {
+                            // 编辑时显示橙色虚线框
+                            var tmpID = 'RT_' + no + '_2';
+                            setAttr(tmpID, "stroke", "#FF5500");
+                            setAttr(tmpID, "stroke-width", "15");
+                            setAttr(tmpID, "stroke-dasharray", "5, 3");
+                        }
 
                         // block上的链接不包含在block的<g>里，需要单独处理
                         if (g_blockLink[no] != "") {
@@ -7693,6 +7847,17 @@
                         } else {
                             $("O_P" + no + "_LM").style.display = "none";
                         }
+
+                        // 放大显示，仅在播放时
+                        if (g_inFullScreen) {
+                            var scale = 1.2;
+                            tmpID = "DIV_OUT_" + no;
+                            $(tmpID).style.transform = `scale(${scale})`;
+                            $(tmpID).style.transformOrigin = "right bottom";   // 放大时，原点在左上角 
+                            g_zIndexBeforeScale = $(tmpID).style.zIndex;   // 记录原来的
+                            $(tmpID).style.zIndex = g_zIndexAfterScale++;  // 置顶
+                        }
+
                     }
                     g_highLightShowing = true;
 
@@ -7717,7 +7882,25 @@
                         g_tmpValue = g_colorOpacity[g_colorOpacityNo];
                         setAttr(tmpID, "opacity", g_tmpValue);
                         setAttr(tmpID, "stroke-dasharray", "1, 0");
+
+                        // 缩回原来大小
+                        var scale = 1;
+                        tmpID = "DIV_OUT_" + no;
+                        $(tmpID).style.transform = `scale(${scale})`;
+
+                        // 隐藏彩虹圈
+                        $("RT_" + no + "_3").style.display = "none";
+                        
+                        // 恢复 zIndex
+                        // 只有在全屏播放时恢复
+                        if (g_inFullScreen) {
+                            // 恢复到所有泡泡之下
+                            if (!g_inDeHighLightAll) { $(tmpID).style.zIndex = 1;  
+                            }
+                        }
+
                     }
+
                     g_highLightShowing = false;
 
                 }
@@ -7731,14 +7914,32 @@
                     g_keepHighLight = false;
                     deHighLightAll();
 
-                    $("GEN_WORDS_BOX").style.border = '15px dashed #FF5500';
-                    $("GEN_WORDS_BOX").style.paddingLeft = '5px';
-                    $("GEN_WORDS_BOX").style.paddingRight = '5px';
-                    $("GEN_WORDS_BOX").style.paddingTop = '5px';
-                    $("GEN_WORDS_BOX").style.paddingBottom = '5px';
-                    $('GEN_WORDS_TEXT2').style.left = '1145px';
-                    $('GEN_WORDS_TEXT2').style.top = '-15px';
                     $("GEN_WORDS_BOX").style.display = 'block';
+
+                    // 处理高亮
+                    if (g_inFullScreen) {
+                        // 播放时显示彩虹框
+                        $("GEN_WORDS_BOX").classList.add('gen_words-dynamic-rainbow');
+                        $("GEN_WORDS_BOX").style.border = '20px solid #FF5500';
+                    } else {
+                        // 编辑时显示橙色虚线框
+                        $("GEN_WORDS_BOX").style.border = '15px dashed #FF5500';
+                        $("GEN_WORDS_BOX").style.paddingLeft = '5px';
+                        $("GEN_WORDS_BOX").style.paddingRight = '5px';
+                        $("GEN_WORDS_BOX").style.paddingTop = '5px';
+                        $("GEN_WORDS_BOX").style.paddingBottom = '5px';
+                        $('GEN_WORDS_TEXT2').style.left = '1145px';
+                        $('GEN_WORDS_TEXT2').style.top = '-15px';
+                    }
+
+                    // 放大显示，仅在播放时
+                    if (g_inFullScreen) {
+                            var scale = 1.2;
+                            tmpID = "GEN_WORDS_BOX";
+                            $(tmpID).style.transform = `scale(${scale})`;
+                            g_zIndexBeforeScale = $(tmpID).style.zIndex;   // 记录原来的
+                            $(tmpID).style.zIndex = g_zIndexAfterScale++;  // 置顶
+                        }
 
                 }
 
@@ -7755,6 +7956,12 @@
                     $("GEN_WORDS_BOX").style.paddingBottom = '20px';
                     $('GEN_WORDS_TEXT2').style.left = '1160px';
                     $('GEN_WORDS_TEXT2').style.top = '0px';
+
+                    // 移除彩虹边框效果
+                    $("GEN_WORDS_BOX").classList.remove('gen_words-dynamic-rainbow');
+
+                    // 缩回原来大小
+                    $("GEN_WORDS_BOX").style.transform = `scale(1)`;
 
                 }
 
@@ -7846,7 +8053,7 @@
                         document.onmouseup = rDragBubble.end;
 
                         var tStr = g_currentDIV;
-                        var bubbleId = parseInt(tStr.replace(/DIV_/, ""));
+                        var bubbleId = parseInt(tStr.replace(/DIV_IN_/, ""));
                         highLightBubble(bubbleId);
 
                     },
@@ -7871,7 +8078,7 @@
 
                             // 隐藏连接线
                             var tStr = g_currentDIV;
-                            var bubbleId = parseInt(tStr.replace(/DIV_/, ""));
+                            var bubbleId = parseInt(tStr.replace(/DIV_IN_/, ""));
                             var g_tmpID = "LN" + bubbleId;
 
                             if (g_storyLine.trim() != "") {   // 故事线模式，隐藏2根线
@@ -7927,7 +8134,7 @@
                             var bubbleId, bubbleId2;
                             var tStr, lk_url;
                             tStr = g_currentDIV;
-                            bubbleId = parseInt(tStr.replace(/DIV_/, ""));
+                            bubbleId = parseInt(tStr.replace(/DIV_IN_/, ""));
                             if (bubbleId == 0) {
                                 bubbleId2 = "SYS_ATTRACTOR";
                             }
@@ -7976,7 +8183,7 @@
                         this.style.zIndex = g_zIndexBox++;
 
                         var tStr = g_currentDIV;
-                        var bubbleId = parseInt(tStr.replace(/DIV_/, ""));
+                        var bubbleId = parseInt(tStr.replace(/DIV_IN_/, ""));
                         if (!isNaN(bubbleId)) { highLightBubble(bubbleId); }   // 如果不是数字，说明它不是bubble，则不高亮
 
                     },
@@ -8041,29 +8248,29 @@
                 var obj15 = $('SHOW_GENE_BOX');
                 rSetTop.init(obj15);
 
-                var obj30 = $('DIV_0');
+                var obj30 = $('DIV_IN_0');
                 rDragBubble.init(obj30);
-                var obj31 = $('DIV_1');
+                var obj31 = $('DIV_IN_1');
                 rDragBubble.init(obj31);
-                var obj32 = $('DIV_2');
+                var obj32 = $('DIV_IN_2');
                 rDragBubble.init(obj32);
-                var obj33 = $('DIV_3');
+                var obj33 = $('DIV_IN_3');
                 rDragBubble.init(obj33);
-                var obj34 = $('DIV_4');
+                var obj34 = $('DIV_IN_4');
                 rDragBubble.init(obj34);
-                var obj35 = $('DIV_5');
+                var obj35 = $('DIV_IN_5');
                 rDragBubble.init(obj35);
-                var obj36 = $('DIV_6');
+                var obj36 = $('DIV_IN_6');
                 rDragBubble.init(obj36);
-                var obj37 = $('DIV_7');
+                var obj37 = $('DIV_IN_7');
                 rDragBubble.init(obj37);
-                var obj38 = $('DIV_8');
+                var obj38 = $('DIV_IN_8');
                 rDragBubble.init(obj38);
-                var obj39 = $('DIV_9');
+                var obj39 = $('DIV_IN_9');
                 rDragBubble.init(obj39);
-                var obj40 = $('DIV_10');
+                var obj40 = $('DIV_IN_10');
                 rDragBubble.init(obj40);
-                var obj41 = $('DIV_11');
+                var obj41 = $('DIV_IN_11');
                 rDragBubble.init(obj41);
 
                 // ****************************************************** 点击置顶结束 ********************************************************
@@ -8078,7 +8285,7 @@
                     var tStr;
 
                     tStr = g_currentDIV;
-                    bubbleId = parseInt(tStr.replace(/DIV_/, ""));
+                    bubbleId = parseInt(tStr.replace(/DIV_IN_/, ""));
                     x = g_bubbleX[bubbleId];
                     y = g_bubbleY[bubbleId];
 
@@ -8696,13 +8903,13 @@
 
                     // 隐藏泡泡
                     for (let i = 0; i <= 11; i++) {
-                        $("DIV_" + i).style.display = "none";
+                        $("DIV_IN_" + i).style.display = "none";
                         $("LN" + i).style.display = "none";
                     }
 
                     // 隐藏块块
                     for (let i = 1; i <= 5; i++) {
-                        $("OUTER_PARA_" + i).style.display = "none";
+                        $("DIV_OUT_" + i).style.display = "none";
                         $("O_P" + i + "_LM").style.display = "none";    // block上的链接不包含在block的<g>里，需要单独处理
                     }
 
@@ -8720,7 +8927,7 @@
                     // 恢复泡泡
                     for (let i = 0; i <= 11; i++) {
                         if (g_bubbleText0[i].toLowerCase().indexOf("(hide)") == -1) {
-                            $("DIV_" + i).style.display = "block";
+                            $("DIV_IN_" + i).style.display = "block";
                             if (g_colorOpacity[g_colorOpacityNo] < 1.0) {   // 如果配色是透明的，则不显示连线
                                 $("LN" + i).style.display = "none";
                             }
@@ -8732,7 +8939,7 @@
 
                     // 恢复块块
                     for (let i = 1; i <= 5; i++) {
-                        $("OUTER_PARA_" + i).style.display = "block";
+                        $("DIV_OUT_" + i).style.display = "block";
 
                         // block上的链接不包含在block的<g>里，需要单独处理
                         if (g_blockLink[i] != "") {
@@ -9374,20 +9581,22 @@
 
 
                 // **************************************************  isMobileDeviceByTest ************************************************************
-                // 判断是否为移动设备
+                // 判断是否为移动设备的触摸屏
+                // 检测设备是否是触摸屏，如果是，则等同于是移动设备
+                // 曾经使用userAgent判断，但有时不准确。而直接判断是否为触摸屏更准确。
                 function isMobileDeviceByTest() {
 
-                    var regex_match = /(nokia|iphone|android|motorola|^mot-|softbank|foma|docomo|kddi|up.browser|up.link|htc|dopod|blazer|netfront|helio|hosin|huawei|novarra|CoolPad|webos|techfaith|palmsource|blackberry|alcatel|amoi|ktouch|nexian|samsung|^sam-|s[cg]h|^lge|ericsson|philips|sagem|wellcom|bunjalloo|maui|symbian|smartphone|midp|wap|phone|windows ce|iemobile|^spice|^bird|^zte-|longcos|pantech|gionee|^sie-|portalmmm|jigs browser|hiptop|^benq|haier|^lct|operas*mobi|opera*mini|320x320|240x320|176x220)/i;
-                    var u = navigator.userAgent;
-                    if (null == u) {
-                        return true;
-                    }
-                    var result = regex_match.exec(u);
-                    if (null == result) {
-                        return false;
-                    } else {
-                        return true;
-                    }
+                    // 方法1: 检查ontouchstart事件是否支持
+                    const hasTouchStart = 'ontouchstart' in window;
+                    
+                    // 方法2: 检查最大触摸点数
+                    const hasTouchPoints = navigator.maxTouchPoints > 0;
+                    
+                    // 方法3: 检查MSPointerEnabled (IE10+)
+                    const hasMSPointer = window.navigator.msPointerEnabled;
+                    
+                    // 综合判断
+                    return hasTouchStart || hasTouchPoints || hasMSPointer;
 
                 }
 
@@ -9474,7 +9683,7 @@
                 // div id="ai-assist-root-bangs"
                 // 需要在保存文件时把它增加的内容剔除掉
                 // 前面已经定义：var g_divsTobeRemoved = ["qihooai-assistant-root", "ai-assist-root-bangs"];
-                // 删除全部被浏览器附加<div>元素
+                // 删除全部被浏览器附加的<div>元素
                 // 在按 Ctrl+S 时调用本函数
                 function removeDivsAddedByBrowser() {
                     var divId;
@@ -9519,8 +9728,24 @@
 
 
 
-<!--############################################################# 版本升级记录 ##################################################################
+<!--############################################################# 版本升级记录 #################################################################
 
+【Version H2025.12.9.19】：2025.5.14
+ * 此版本采用 VS Code V1.87.2 + Fitten Code 2.8.0 编程。
+ * 发布到 GitHub：https://bgithub.xyz/arthurqwang/ahmm.git
+ 本版本是 H2024.9.19.12 版之后的升级。
+    主要包括：
+    1、增加播放时彩虹高亮显示各个要素，包括概述、内部序参量泡泡、外部参量块块。
+         这样做是为了区分编辑和播放状态。编辑状态仍使用原来的橙色虚线高亮。
+    2、增加播放时块块放大功能。
+        为了让块块可以放大，将每个块块都作为一个div处理。原来是在整个svg中，无法单独放大。
+    3、增加播放时概述放大功能。
+    4、修改BUG：手机谷歌chrome 未识别为手机模式的移动设备的问题。
+        原来使用userAgent判断，但有时不准确。现改为直接判断是否为触摸屏，这样更准确。
+    5、修复BUG：从一个已经由内容的脑图新建一个脑图时，封底图片会带过去。已解决。
+    6、优化连线：各连线起始点改为吸引子中心。原来是吸引子的边缘，那样会出现连线混乱。
+
+==============================================================================================================================================
 【Version H2024.9.19.12】：2024.11.15
  * 此版本采用 VS Code V1.87.2 + Fitten Code 2.8.0 编程。
  * 开始发布到 GitHub：https://bgithub.xyz/arthurqwang/ahmm.git
@@ -9623,10 +9848,26 @@
 ############################################################################################################################################-->
 
 
+<!--############################################################# 功能设计备忘 #################################################################
+
+【2025.5.13】
+1、增加播放时的彩虹高亮，是为了区分编辑和播放状态。
+2、泡泡移动到块块之上时，连线仍然保持在块块下面。这是考虑到连线永远不应遮挡主要内容。
+    曾考虑：将泡泡连线置于块块之上，但最后还是认为不妥。
+3、关于播放时点击、移动泡泡后，是否回到编辑状态后恢复到播放前的位置和z-index？
+    目前的设计是：点击、移动泡泡后，将泡泡置顶，回到编辑状态后仍保持播放时的次序。如果用户保存文件，则播放时的次序可以被保存；如果这时用户关闭脑图，将不提
+    醒保存。如果用户在编辑状态下点击、移动泡泡，则会提醒保存。
+    曾考虑：播放前保存泡泡位置和zindex，播放后返回编辑状态时再恢复，但这样会让用户以为系统有问题，产生迷惑，同时用户在播放状态下的操作将完全无法保存。所以
+    最后决定不保存播放前的泡泡位置和zindex。
+
+
+############################################################################################################################################-->
+
+
 <!--***************************************************************************************************************************************-->
 <!--************************************** 阿色全息脑图 (AHMM: Arthur's Holographic Mind Map) **********************************************-->
-<!--******************************************************* Ver H2024.9.19.12 *************************************************************-->
-<!--****************************************************** 更新日期：2024.11.15 ************************************************************-->
+<!--******************************************************* Ver H2025.12.9.19 *************************************************************-->
+<!--****************************************************** 更新日期：2025.5.14 ************************************************************-->
 <!--********************************************************** 作者：王权 ******************************************************************-->
 <!--******************************************** 版权所有 自由使用 自由复制 自由共享 *********************************************************-->
 <!--***************************************************************************************************************************************-->
