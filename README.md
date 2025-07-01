@@ -1,7 +1,13 @@
 # AHMM / 阿色全息脑图
 
 Try at / 使用：http://www.holomind.com.cn/ahmm/ahmm.html
-【笔记】：2025.7.1 ： (1) 升级至AI版本。 (2) 增加了使用deepseek后台自动生成全息脑图，采用sessionStorage+JSON传递数据。 (3) 支持从网页或用户给定文本一键生成全息脑图。 (4) 从网页生成时，通过浏览器扩展程序实现。扩展程序安装文件夹为AHMM_ai。 (5) 服务器端程序位于ai文件夹内。
+<br><br>
+【笔记】：2025.7.1 ： <br>
+(1) 升级至AI版本。 <br>
+(2) 增加了使用deepseek后台自动生成全息脑图，采用sessionStorage+JSON传递数据。 <br>
+(3) 支持从网页或用户给定文本一键生成全息脑图。 <br>
+(4) 从网页生成时，通过浏览器扩展程序实现。扩展程序安装文件夹为AHMM_ai。 <br>
+(5) 服务器端程序位于ai文件夹内。
 
 <center>
 <img alt="BSV Logo"  src="_/2.png"><br>
