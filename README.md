@@ -1,4 +1,4 @@
-# AHMM / 阿色全息脑图：已升级至AI大模型一键自动生成
+# AHMM ai+ / 阿色全息脑图：已升级至AI大模型一键自动生成
 
 Try at / 使用：http://www.holomind.com.cn/ahmm/ahmm.html
 <br><br>
