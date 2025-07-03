@@ -8,6 +8,7 @@ Try at / 使用：http://www.holomind.com.cn/ahmm/ahmm.html
 (3) 支持从网页或用户给定文本一键生成全息脑图。 <br>
 (4) 从网页生成时，通过浏览器扩展程序实现。扩展程序安装文件夹为AHMM_ai。 <br>
 (5) 服务器端程序位于ai文件夹内。
+(6) 所有文件都已打包在 AHMM_ai_plus_all_20xx_xx_xx_xx.zip。
 
 <center>
 <img alt="BSV Logo"  src="_/2.png"><br>
