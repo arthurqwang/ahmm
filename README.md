@@ -2,7 +2,7 @@
 
 Try at / 使用：http://www.holomind.com.cn/ahmm/ahmm.html
 <br><br>
-【笔记】：2025.7.8 ： <br>
+【笔记】：2025.7.9 ： <br>
 (1) 升级至AI版本。 <br>
 (2) 增加了使用deepseek后台自动生成全息脑图，采用sessionStorage+JSON传递数据。 <br>
 (3) 可以从网页或者用户文档（.docx, .pptx, .xlsx, txt, .pdf），以及手填文本一键生成。<br> 
