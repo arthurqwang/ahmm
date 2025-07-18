@@ -2,10 +2,10 @@
 
 Try at / 使用：http://www.holomind.com.cn/ahmm/ahmm.html
 <br><br>
-【笔记】：2025.7.9 ： <br>
+【笔记】：2025.7.18 ： <br>
 (1) 升级至AI版本。 <br>
 (2) 增加了使用deepseek后台自动生成全息脑图，采用sessionStorage+JSON传递数据。 <br>
-(3) 可以从网页或者用户文档（.docx, .pptx, .xlsx, txt, .pdf），以及手填文本一键生成。<br> 
+(3) 可以从网页或者用户文档（.docx, .pptx, .xlsx, txt, .pdf），以及手填文本一键生成，支持一句话生成。<br> 
 (4) 从网页生成时，通过浏览器扩展程序实现。扩展程序安装文件夹为AHMM_ai。 <br>
 (5) 服务器端程序位于ai文件夹内。<br>
 (6) 所有文件都已打包在 AHMM_ai_plus_all_20xx_xx_xx_xx.zip。
